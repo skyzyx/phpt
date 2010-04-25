@@ -1,0 +1,210 @@
+--TEST--
+Test filter_input() with GET and POST data.
+
+--DESCRIPTION--
+This test covers both valid and invalid usages of
+filter_input() with INPUT_GET and INPUT_POST data
+and several differnet filter sanitizers.
+
+--CREDIT--
+Felipe Pena
+
+--CREDITS--
+Zoe Slattery zoe@php.net
+# TestFest Munich 2009-05-19
+
+--SKIPIF--
+<?php if (!extension_loaded("filter")) die("Skipped: filter extension required."); ?>
+
+--REQUEST--
+return <<<END
+SCRIPT_NAME=/nothing.php
+QUERY_STRING=$filename
+END;
+
+--POST--
+<SOAP-ENV:Envelope
+  SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:si="http://soapinterop.org/xsd">
+  <SOAP-ENV:Body>
+    <ns1:test xmlns:ns1="http://testuri.org" />
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+--POST_RAW--
+Content-type: multipart/form-data, boundary=AaB03x
+
+--AaB03x
+content-disposition: form-data; name="field1"
+
+Joe Blow
+--AaB03x
+content-disposition: form-data; name="pics"; filename="file1.txt"
+Content-Type: text/plain
+
+abcdef123456789
+--AaB03x--
+
+--GZIP_POST--
+1
+
+--DEFLATE_POST--
+1
+
+--GET--
+a=<b>test</b>&b=http://example.com
+
+--COOKIE--
+hello=World;goodbye=MrChips
+
+--STDIN--
+fooBar
+use this to input some thing to the php script
+
+--INI--
+session.use_cookies=0
+session.cache_limiter=
+register_globals=1
+session.serialize_handler=php
+session.save_handler=files
+
+--ARGS--
+--arg value --arg=value -avalue -a=value -a value
+
+--ENV--
+return <<<END
+REDIRECT_URL=$scriptname
+PATH_TRANSLATED=c:\apache\1.3.27\htdocs\nothing.php
+QUERY_STRING=$filename
+PATH_INFO=/nothing.php
+SCRIPT_NAME=/phpexe/php.exe/nothing.php
+SCRIPT_FILENAME=c:\apache\1.3.27\htdocs\nothing.php
+END;
+
+--FILE--
+<?php
+ini_set('html_errors', false);
+var_dump(filter_input(INPUT_GET, "a", FILTER_SANITIZE_STRIPPED));
+var_dump(filter_input(INPUT_GET, "b", FILTER_SANITIZE_URL));
+var_dump(filter_input(INPUT_GET, "a", FILTER_SANITIZE_SPECIAL_CHARS, array(1,2,3,4,5)));
+var_dump(filter_input(INPUT_GET, "b", FILTER_VALIDATE_FLOAT, new stdClass));
+var_dump(filter_input(INPUT_POST, "c", FILTER_SANITIZE_STRIPPED, array(5,6,7,8)));
+var_dump(filter_input(INPUT_POST, "d", FILTER_VALIDATE_FLOAT));
+var_dump(filter_input(INPUT_POST, "c", FILTER_SANITIZE_SPECIAL_CHARS));
+var_dump(filter_input(INPUT_POST, "d", FILTER_VALIDATE_INT));
+var_dump(filter_var(new stdClass, "d"));
+var_dump(filter_input(INPUT_POST, "c", "", ""));
+var_dump(filter_var("", "", "", "", ""));
+var_dump(filter_var(0, 0, 0, 0, 0));
+echo "Done\n";
+?>
+
+--FILEEOF--
+<?php
+eval("echo 'Hello'; // comment");
+echo " World";
+//last line comment
+
+--FILE_EXTERNAL--
+files/file012.php
+
+--REDIRECTTEST--
+# magic auto-configuration
+
+$config = array(
+  'TESTS' => 'ext/pdo/tests'
+);
+
+if (false !== getenv('PDO_MYSQL_TEST_DSN')) {
+  # user set them from their shell
+  $config['ENV']['PDOTEST_DSN'] = getenv('PDO_MYSQL_TEST_DSN');
+  $config['ENV']['PDOTEST_USER'] = getenv('PDO_MYSQL_TEST_USER');
+  $config['ENV']['PDOTEST_PASS'] = getenv('PDO_MYSQL_TEST_PASS');
+  if (false !== getenv('PDO_MYSQL_TEST_ATTR')) {
+    $config['ENV']['PDOTEST_ATTR'] = getenv('PDO_MYSQL_TEST_ATTR');
+  }
+} else {
+  $config['ENV']['PDOTEST_DSN'] = 'mysql:host=localhost;dbname=test';
+  $config['ENV']['PDOTEST_USER'] = 'root';
+  $config['ENV']['PDOTEST_PASS'] = '';
+}
+
+return $config;
+
+--HEADERS--
+return <<<END
+Content-Type=multipart/form-data; boundary=---------------------------240723202011929
+Content-Length=862
+END;
+
+--CGI--
+
+--XFAIL--
+This bug might be still open on aix5.2-ppc64 and hpux11.23-ia64
+
+--EXPECTHEADERS--
+Content-type: text/html; charset=UTF-8
+Status: 403 Access Denied
+
+--EXPECT--
+array(2) {
+  ["hello"]=>
+  string(5) "World"
+  ["goodbye"]=>
+  string(7) "MrChips"
+}
+
+--EXPECTF--
+string(4) "test"
+string(18) "http://example.com"
+string(27) "&#60;b&#62;test&#60;/b&#62;"
+
+Notice: Object of class stdClass could not be converted to int in %ssample001.php on line %d
+bool(false)
+string(6) "string"
+float(12345.7)
+string(29) "&#60;p&#62;string&#60;/p&#62;"
+bool(false)
+
+Warning: filter_var() expects parameter 2 to be long, string given in %s011.php on line %d
+NULL
+
+Warning: filter_input() expects parameter 3 to be long, string given in %s011.php on line %d
+NULL
+
+Warning: filter_var() expects at most 3 parameters, 5 given in %s011.php on line %d
+NULL
+
+Warning: filter_var() expects at most 3 parameters, 5 given in %s011.php on line %d
+NULL
+Done
+
+--EXPECTREGEX--
+M_E       : 2.718281[0-9]*
+M_LOG2E   : 1.442695[0-9]*
+M_LOG10E  : 0.434294[0-9]*
+M_LN2     : 0.693147[0-9]*
+M_LN10    : 2.302585[0-9]*
+M_PI      : 3.141592[0-9]*
+M_PI_2    : 1.570796[0-9]*
+M_PI_4    : 0.785398[0-9]*
+M_1_PI    : 0.318309[0-9]*
+M_2_PI    : 0.636619[0-9]*
+M_SQRTPI  : 1.772453[0-9]*
+M_2_SQRTPI: 1.128379[0-9]*
+M_LNPI    : 1.144729[0-9]*
+M_EULER   : 0.577215[0-9]*
+M_SQRT2   : 1.414213[0-9]*
+M_SQRT1_2 : 0.707106[0-9]*
+M_SQRT3   : 1.732050[0-9]*
+
+--CLEAN--
+<?php
+$key = ftok(dirname(__FILE__)."/003.phpt", 'q');
+$s = shm_attach($key);
+shm_remove($s);
+?>
+
