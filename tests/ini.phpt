@@ -3,13 +3,14 @@ Contents of the INI section.
 
 --FILE--
 <?php
-	define('BASE', dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
-	define('TESTS', BASE . '_tests' . DIRECTORY_SEPARATOR);
+	define('BASE', dirname(__DIR__));
+	define('TESTS', BASE . '/tests');
 
-	include_once BASE . 'phpt.class.php';
+	include_once BASE . '/src/PHPT.php';
+	use Skyzyx\Components\PHPT;
 
-	$file = file_get_contents(TESTS . 'sample.phpt.txt');
-	$phpt = new PHPT_Parser($file);
+	$file = file_get_contents(TESTS . '/sample.phpt.txt');
+	$phpt = new PHPT($file);
 	$results = $phpt->get_section('INI');
 
 	var_dump($results);
