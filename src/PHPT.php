@@ -45,7 +45,7 @@ namespace Skyzyx\Components
 		private $matches;
 
 		/**
-		 * Constructs a new instance of <Skyzyx\Components\PHPT\Parser>.
+		 * Constructs a new instance of <Skyzyx\Components\PHPT>.
 		 *
 		 * @param string $text (Required) The text of the PHPT file.
 		 * @return void
