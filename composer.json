@@ -6,8 +6,8 @@
 	"keywords": ["phpt", "test"],
 	"authors": [
 		{
-			"name": "Ryan Parman"
-			"homepage": "http://ryanparman.com",
+			"name": "Ryan Parman",
+			"homepage": "http://ryanparman.com"
 		}
 	],
 	"require": {
