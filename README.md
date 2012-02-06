@@ -65,7 +65,7 @@ And include it in your scripts:
 	require_once '/path/to/phpt/src/PHPT.php';
 
 ### Install with Composer
-To add the PHPT component as a dependency in your `composer.json` file:
+If you're using [Composer](https://github.com/composer/composer) to manage dependencies, you can add PHP with it.
 
 	{
 		"require": {
@@ -80,14 +80,14 @@ If you're using a class loader (e.g., [Symfony Class Loader](https://github.com/
 
 
 ## Tests
-To the surprise of absolutely nobody, the PHPT component is tested using PHPT tests.
+Tests are written in [PHPT](http://qa.php.net/phpt_details.php) format. You can run them with either the PEAR Test Runner or with PHPUnit 3.6+.
 
-	cd phpt/src/tests
-	pear run-tests -r .
+	cd tests/
+	pear run-tests .
 
-Or, with [PHPUnit](http://phpunit.de):
+...or...
 
-	cd phpt/src/tests
+	cd tests/
 	phpunit .
 
 
