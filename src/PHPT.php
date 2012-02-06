@@ -24,15 +24,15 @@
  */
 
 
-namespace Skyzyx\Components\PHPT
+namespace Skyzyx\Components
 {
 	/**
 	 * Parses PHPT test files into sections.
 	 *
-	 * @version 2010.04.24
+	 * @version 2012.02.05
 	 * @author Ryan Parman <http://ryanparman.com>
 	 */
-	class Parser
+	class PHPT
 	{
 		/**
 		 * Stores the text of the PHPT file.
