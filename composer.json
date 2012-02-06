@@ -1,0 +1,17 @@
+{
+	"name": "skyzyx/phpt",
+	"description": "Parses PHPT unit test files into sections as key-value pairs.",
+	"homepage": "http://github.com/skyzyx/phpt",
+	"license": "MIT",
+	"keywords": ["phpt", "test"],
+	"authors": [
+		{
+			"name": "Ryan Parman"
+			"homepage": "http://ryanparman.com",
+		}
+	],
+	"require": {
+		"php": ">=5.3"
+	},
+	"type": "library"
+}
