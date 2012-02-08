@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.10" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0        http://pear.php.net/dtd/tasks-1.0.xsd        http://pear.php.net/dtd/package-2.0        http://pear.php.net/dtd/package-2.0.xsd">
+  <name>PHPT</name>
+  <channel>skyzyx.github.com</channel>
+  <summary>Parses PHPT unit test files into sections as key-value pairs.</summary>
+  <description>Parses PHPT unit test files into sections as key-value pairs.</description>
+  <lead>
+    <name>Ryan Parman</name>
+    <user/>
+    <email>ryan@ryanparman.com</email>
+    <active>yes</active>
+  </lead>
+  <date>2012-02-08</date>
+  <time>09:17:23</time>
+  <version>
+    <release>1.1.0</release>
+    <api>1.1.0</api>
+  </version>
+  <stability>
+    <release>stable</release>
+    <api>stable</api>
+  </stability>
+  <license>MIT</license>
+  <notes>-</notes>
+  <contents>
+    <dir name="/">
+      <file name="doc/.empty" role="doc" md5sum="d41d8cd98f00b204e9800998ecf8427e"/>
+      <file name="tests/args.phpt" role="test" md5sum="427b82d248ad5b580fbc9920384aebe8"/>
+      <file name="tests/cgi.phpt" role="test" md5sum="83e764527364a8cd84aa67b1150d5b05"/>
+      <file name="tests/clean.phpt" role="test" md5sum="b751631d9cf97a99cff8c720188ef6c0"/>
+      <file name="tests/cookie.phpt" role="test" md5sum="bbf9b6c75aad27caee19e9f68b8ead0c"/>
+      <file name="tests/count_sections.phpt" role="test" md5sum="1867a45ada9d069519daf6e1a6adfa4e"/>
+      <file name="tests/credit.phpt" role="test" md5sum="d5d0234eab8b2b0d6b36d417518ea353"/>
+      <file name="tests/credits.phpt" role="test" md5sum="29eb96c6ea3cdc721a188e021d86f223"/>
+      <file name="tests/deflate_post.phpt" role="test" md5sum="e6b6e487d89862de08f9b8e666d012e6"/>
+      <file name="tests/description.phpt" role="test" md5sum="b6136a6c3d0bfd9268d7356a7a24af05"/>
+      <file name="tests/env.phpt" role="test" md5sum="7c3ff5b82e88b1c0e328707721bac8c1"/>
+      <file name="tests/expect.phpt" role="test" md5sum="4812f00c38ebe56d72701130b9fed8ca"/>
+      <file name="tests/expectf.phpt" role="test" md5sum="98edb6451eea59f8858a222a5348de65"/>
+      <file name="tests/expectheaders.phpt" role="test" md5sum="3509a14c1c73e209a00b897c9de0743a"/>
+      <file name="tests/expectregex.phpt" role="test" md5sum="2c7e00476a6a710771b5398493c17afb"/>
+      <file name="tests/file.phpt" role="test" md5sum="d624772298c6e7784947b36d737f93e5"/>
+      <file name="tests/file_external.phpt" role="test" md5sum="d3f3abd65e4b216e2d92346f6447fa77"/>
+      <file name="tests/fileof.phpt" role="test" md5sum="7cef3c70bccfcdb9b72279b62ce6df79"/>
+      <file name="tests/get.phpt" role="test" md5sum="fbb29790d2272e28568db83379cceb56"/>
+      <file name="tests/gzip_post.phpt" role="test" md5sum="bf3e06efd0d7fb538d6f2eb0be8e56b1"/>
+      <file name="tests/headers.phpt" role="test" md5sum="addaa75f1704c9e4c3e700393da269bc"/>
+      <file name="tests/ini.phpt" role="test" md5sum="860c93831c234f8293657f7024d4f4b4"/>
+      <file name="tests/post.phpt" role="test" md5sum="6db1a4038f3eb2162518d3623d98db61"/>
+      <file name="tests/post_raw.phpt" role="test" md5sum="6f932e9585138460a153d755971f6613"/>
+      <file name="tests/redirecttest.phpt" role="test" md5sum="2de9831e7923dc0522fb955239adfbfd"/>
+      <file name="tests/request.phpt" role="test" md5sum="20f25d4f3ea7e7fa9ff006afe748d001"/>
+      <file name="tests/sample.phpt.txt" role="test" md5sum="d15f7255373fb5a374d0bbe07d39fab8"/>
+      <file name="tests/skipif.phpt" role="test" md5sum="b6c48d9eaf6ede23339d24ea15bc823f"/>
+      <file name="tests/stdin.phpt" role="test" md5sum="8b45700da9dffa03501c0f1cc98387e4"/>
+      <file name="tests/test.phpt" role="test" md5sum="c20fa7c4fb3846d4d10d0215069fb9b9"/>
+      <file name="tests/xfail.phpt" role="test" md5sum="f6f6cdc477f713e90d80a1589aa4ff6d"/>
+      <file name="src/PHPT.php" role="php" md5sum="7ad73327f2d8aaf675b17563848e3b5b"/>
+    </dir>
+  </contents>
+  <dependencies>
+    <required>
+      <php>
+        <min>5.3</min>
+      </php>
+      <pearinstaller>
+        <min>1.4.0</min>
+      </pearinstaller>
+    </required>
+  </dependencies>
+  <phprelease>
+    <filelist>
+      <install name="doc/.empty" as=".empty"/>
+      <install name="tests/args.phpt" as="args.phpt"/>
+      <install name="tests/cgi.phpt" as="cgi.phpt"/>
+      <install name="tests/clean.phpt" as="clean.phpt"/>
+      <install name="tests/cookie.phpt" as="cookie.phpt"/>
+      <install name="tests/count_sections.phpt" as="count_sections.phpt"/>
+      <install name="tests/credit.phpt" as="credit.phpt"/>
+      <install name="tests/credits.phpt" as="credits.phpt"/>
+      <install name="tests/deflate_post.phpt" as="deflate_post.phpt"/>
+      <install name="tests/description.phpt" as="description.phpt"/>
+      <install name="tests/env.phpt" as="env.phpt"/>
+      <install name="tests/expect.phpt" as="expect.phpt"/>
+      <install name="tests/expectf.phpt" as="expectf.phpt"/>
+      <install name="tests/expectheaders.phpt" as="expectheaders.phpt"/>
+      <install name="tests/expectregex.phpt" as="expectregex.phpt"/>
+      <install name="tests/file.phpt" as="file.phpt"/>
+      <install name="tests/file_external.phpt" as="file_external.phpt"/>
+      <install name="tests/fileof.phpt" as="fileof.phpt"/>
+      <install name="tests/get.phpt" as="get.phpt"/>
+      <install name="tests/gzip_post.phpt" as="gzip_post.phpt"/>
+      <install name="tests/headers.phpt" as="headers.phpt"/>
+      <install name="tests/ini.phpt" as="ini.phpt"/>
+      <install name="tests/post.phpt" as="post.phpt"/>
+      <install name="tests/post_raw.phpt" as="post_raw.phpt"/>
+      <install name="tests/redirecttest.phpt" as="redirecttest.phpt"/>
+      <install name="tests/request.phpt" as="request.phpt"/>
+      <install name="tests/sample.phpt.txt" as="sample.phpt.txt"/>
+      <install name="tests/skipif.phpt" as="skipif.phpt"/>
+      <install name="tests/stdin.phpt" as="stdin.phpt"/>
+      <install name="tests/test.phpt" as="test.phpt"/>
+      <install name="tests/xfail.phpt" as="xfail.phpt"/>
+      <install name="src/PHPT.php" as="PHPT.php"/>
+    </filelist>
+  </phprelease>
+</package>
